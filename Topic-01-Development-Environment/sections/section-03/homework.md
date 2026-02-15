@@ -1,454 +1,702 @@
-# Homework 3: Branching Strategy & Conflict Resolution
+# Homework 3: Git States Mastery - Understanding File Lifecycle
 
-## Due Date: [Insert due date - typically 1 week after Homework 2]
-
-## Objective
-Master Git branching workflows, practice conflict resolution, and implement professional development practices through a simulated team project.
-
-## Estimated Time: 120-150 minutes
+**Section**: 3 - Understanding Git States
+**Estimated Time**: 100-130 minutes
+**Difficulty**: Intermediate
+**Prerequisites**: Homework 1 & 2 (Git Fundamentals & Repository Operations)
 
 ---
 
-## Scenario: Team Blog Platform Development
+## 📋 Assignment Overview
 
-You are working on a team developing a blog platform called "TechBlog". The team consists of:
-- **You (Lead Developer)**: Main feature implementation
-- **Alice (UI Developer)**: Frontend styling
-- **Bob (Backend Developer)**: API development
-- **Charlie (DevOps)**: Deployment and infrastructure
+In this homework, you'll become a master of Git's state management system. You'll explore Git's three main areas (working directory, staging area, repository), practice all possible file state transitions, and learn to troubleshoot common state-related issues. This deep understanding of Git's internal workings will make you a confident and effective version control user.
 
-The project requires multiple features to be developed simultaneously while maintaining code quality and avoiding conflicts.
+**Learning Objectives:**
+- Master Git's three areas: working directory, staging area, and repository
+- Understand and control all file states (untracked, modified, staged, committed)
+- Practice state transitions using appropriate Git commands
+- Use diff commands to compare between states
+- Troubleshoot and resolve common state management issues
+- Develop intuition for Git's snapshot-based approach
 
 ---
 
-## Part 1: Repository Setup & Branching Strategy (20 points)
+## 🎯 Requirements
 
-### Task 1.1: Initialize Blog Project (10 points)
+### Part 1: State Exploration Repository Setup (20 points)
 
-**Requirements:**
-- Create a new repository called `techblog-platform`
-- Set up professional project structure
-- Initialize with basic blog functionality
-
-**Project Structure:**
-```
-techblog-platform/
-├── README.md
-├── requirements.txt
-├── app.py                    # Main Flask application
-├── models.py                # Database models
-├── routes.py                # API routes
-├── templates/
-│   ├── base.html
-│   ├── index.html
-│   └── post.html
-├── static/
-│   ├── css/
-│   │   └── styles.css
-│   └── js/
-│       └── app.js
-├── tests/
-│   └── test_basic.py
-└── docs/
-    └── api.md
-```
-
-**Initial Files to Create:**
-- Basic Flask app structure
-- Simple homepage template
-- Basic CSS styling
-- API documentation stub
-
-**Deliverables:**
-- Repository initialization
-- Complete project structure
-- Working basic application
-
-### Task 1.2: Implement Branching Strategy (10 points)
+#### Task 1.1: Create Practice Repository
+**Objective**: Set up a dedicated repository for exploring Git states
 
 **Requirements:**
-- Set up Git Flow branching model
-- Create appropriate branches for team development
-- Document branching strategy
+- Create a new local Git repository for state practice
+- Initialize with a clear project structure
+- Add initial files to establish baseline state
 
-**Required Branches:**
-- `main` - Production-ready code
-- `develop` - Integration branch
-- `feature/user-auth` - User authentication feature
-- `feature/post-management` - Blog post CRUD operations
-- `feature/comments` - Comment system
-- `hotfix/security-patch` - Security fixes
+**Repository Setup:**
+```bash
+# Create new directory for state practice
+mkdir git-states-practice
+cd git-states-practice
 
-**Branch Naming Convention:**
-```
-feature/    - New features
-hotfix/     - Critical fixes
-release/    - Release preparation
-bugfix/     - Bug fixes
+# Initialize repository
+git init
+
+# Create initial project structure
+mkdir src docs notes
+echo "# Git States Practice Project" > README.md
+echo "print('Exploring Git states')" > src/main.py
+echo "# Project notes" > notes/learning.md
+
+# Check initial status
+git status
 ```
 
 **Deliverables:**
-- Branch creation commands
-- Branching strategy documentation
-- Branch purpose explanation
+- Local repository initialized and configured
+- Initial project structure created
+- Screenshot of `git status` showing untracked files
 
----
-
-## Part 2: Feature Development (40 points)
-
-### Task 2.1: User Authentication Feature (15 points)
+#### Task 1.2: Establish Repository History
+**Objective**: Create a commit history to work with state transitions
 
 **Requirements:**
-- Create feature branch for user authentication
-- Implement login/logout functionality
-- Add user registration
-- Create user session management
+- Add and commit initial files
+- Create multiple commits to establish history
+- Verify repository state after each operation
 
-**Implementation Steps:**
-1. Create `feature/user-auth` branch
-2. Add user model to `models.py`
-3. Create authentication routes in `routes.py`
-4. Add login/register templates
-5. Implement session handling
-6. Add form validation
-7. Create unit tests
+**Initial Commits:**
+```bash
+# Add and commit initial files
+git add README.md
+git commit -m "Initial commit: Add project README"
 
-**Commit Strategy:**
-- Use conventional commits
-- Make atomic commits for each feature component
-- Test after each major change
+git add src/
+git commit -m "Add source code directory and main script"
 
-**Deliverables:**
-- Complete authentication system
-- User registration and login functionality
-- Session management
-- Unit tests for auth features
+git add notes/
+git commit -m "Add notes directory for learning documentation"
 
-### Task 2.2: Blog Post Management (15 points)
-
-**Requirements:**
-- Implement CRUD operations for blog posts
-- Create post creation/editing interface
-- Add post listing and detail views
-- Implement author permissions
-
-**Implementation Steps:**
-1. Create `feature/post-management` branch
-2. Add Post model to `models.py`
-3. Create post CRUD routes
-4. Add post templates (create, edit, list, detail)
-5. Implement author-only editing
-6. Add post validation
-7. Create post management tests
-
-**Features Required:**
-- Create new posts
-- Edit existing posts (author only)
-- Delete posts (author only)
-- List all posts with pagination
-- View individual posts
-
-**Deliverables:**
-- Complete post management system
-- Author permission controls
-- Post validation and error handling
-- Comprehensive tests
-
-### Task 2.3: Comments System (10 points)
-
-**Requirements:**
-- Add commenting functionality to posts
-- Implement nested comments (optional)
-- Add comment moderation features
-- Create comment API endpoints
-
-**Implementation Steps:**
-1. Create `feature/comments` branch
-2. Add Comment model
-3. Create comment routes
-4. Add comment forms to post detail page
-5. Implement comment threading (optional)
-6. Add comment moderation controls
-
-**Deliverables:**
-- Comment creation and display
-- Comment moderation features
-- API endpoints for comments
-- Comment validation
-
----
-
-## Part 3: Conflict Resolution & Merging (25 points)
-
-### Task 3.1: Create Merge Conflicts (10 points)
-
-**Requirements:**
-- Intentionally create conflicting changes
-- Practice different conflict scenarios
-- Document conflict resolution process
-
-**Conflict Scenarios to Create:**
-1. **Template Conflict:** Modify same template file in different branches
-2. **Route Conflict:** Add same route in different branches
-3. **Model Conflict:** Modify same model in different branches
-4. **Styling Conflict:** Edit same CSS file in different branches
-
-**Steps:**
-1. Make conflicting changes in different branches
-2. Attempt to merge branches
-3. Resolve conflicts manually
-4. Complete merge successfully
-
-**Deliverables:**
-- Documented conflict scenarios
-- Before/after conflict markers
-- Resolution strategies used
-- Final merged code
-
-### Task 3.2: Branch Merging Strategy (10 points)
-
-**Requirements:**
-- Demonstrate different merge strategies
-- Use appropriate merge types for different scenarios
-- Maintain clean project history
-
-**Merge Scenarios:**
-1. **Fast-forward merge** for simple feature additions
-2. **Three-way merge** for conflicting changes
-3. **Squash merge** for consolidating small commits
-4. **Rebase** for maintaining linear history
-
-**Deliverables:**
-- Different merge strategies demonstrated
-- Git history showing merge types
-- Explanation of when to use each strategy
-
-### Task 3.3: Hotfix Implementation (5 points)
-
-**Requirements:**
-- Simulate critical security issue
-- Create hotfix branch from main
-- Deploy fix immediately
-
-**Hotfix Process:**
-1. Create `hotfix/security-patch` from `main`
-2. Implement security fix
-3. Test fix thoroughly
-4. Merge directly to `main` and `develop`
-5. Tag release version
-
-**Deliverables:**
-- Hotfix branch and commits
-- Security fix implementation
-- Release tagging
-
----
-
-## Part 4: Code Review & Quality Assurance (10 points)
-
-### Task 4.1: Pull Request Simulation (5 points)
-
-**Requirements:**
-- Create detailed pull request descriptions
-- Simulate code review process
-- Document review feedback and changes
-
-**PR Requirements:**
-- Clear title and description
-- List of changes made
-- Testing instructions
-- Screenshots (if UI changes)
-- Related issues/tasks
-
-**Deliverables:**
-- Pull request documentation
-- Code review checklist
-- Revision history
-
-### Task 4.2: Testing & Validation (5 points)
-
-**Requirements:**
-- Create comprehensive test suite
-- Validate all features work correctly
-- Test conflict resolution didn't break functionality
-
-**Testing Requirements:**
-- Unit tests for all models
-- Integration tests for API endpoints
-- UI tests for key user flows
-- Conflict resolution validation
-
-**Deliverables:**
-- Test files and test results
-- Validation checklist
-- Bug reports and fixes
-
----
-
-## Part 5: Documentation & Presentation (5 points)
-
-### Task 5.1: Project Documentation
-
-**Requirements:**
-- Create comprehensive project documentation
-- Document development workflow
-- Create deployment instructions
-
-**Documentation Requirements:**
-- API documentation
-- Setup/installation guide
-- Development workflow guide
-- Branching strategy documentation
-- Deployment instructions
-
-**Deliverables:**
-- Complete documentation set
-- Workflow diagrams
-- Setup scripts
-
----
-
-## Submission Requirements
-
-### Repository Structure
-```
-techblog-platform/
-├── README.md                 # Main project documentation
-├── requirements.txt         # Python dependencies
-├── app.py                   # Main Flask application
-├── models.py               # Database models
-├── routes.py               # API routes
-├── templates/              # HTML templates
-├── static/                 # CSS, JS, images
-├── tests/                  # Test files
-├── docs/                   # Documentation
-└── .gitignore
+# Verify repository state
+git status
+git log --oneline
 ```
 
-### Git History Requirements
-- Minimum 15 branches created
-- 50+ commits with conventional messages
-- Demonstrated merge conflicts and resolution
-- Clean branching strategy implementation
-- Professional commit history
-
-### Branch Status
-- All feature branches merged or clearly documented
-- `main` branch contains production-ready code
-- `develop` branch contains latest integrated features
-- Clear branch organization
-
-### Submission Method
-1. **Repository URL:** Submit GitHub repository URL
-2. **Repository Access:** Ensure repository is public
-3. **Documentation:** Include comprehensive README
-4. **Demo:** Provide instructions to run the application
+**Deliverables:**
+- Repository with 3+ commits establishing history
+- Clean repository state (no untracked/modified files)
+- Commit history log
 
 ---
 
-## Grading Criteria
+### Part 2: File State Exploration (35 points)
 
-### Branching Strategy (25%)
-- Proper Git Flow implementation
-- Appropriate branch naming
-- Clean merge history
-- Strategy documentation
+#### Task 2.1: Demonstrate All File States
+**Objective**: Experience every possible file state in Git
 
-### Feature Implementation (30%)
-- Complete functionality for all features
-- Code quality and organization
-- Proper error handling
-- User experience considerations
+**Requirements:**
+- Create files in each state: untracked, modified, staged, committed
+- Use `git status` to observe state changes
+- Document the characteristics of each state
 
-### Conflict Resolution (20%)
-- Multiple conflict scenarios demonstrated
-- Proper resolution techniques
-- Documentation of process
-- No broken functionality
+**State Demonstration:**
+```bash
+# Start with clean repository (from Part 1)
 
-### Code Quality (15%)
-- Comprehensive testing
-- Clean, readable code
-- Proper documentation
-- Best practices adherence
+# 1. Create untracked file
+echo "This is an untracked file" > untracked.txt
+git status  # Should show: Untracked files: untracked.txt
 
-### Documentation (10%)
-- Clear project documentation
-- Workflow explanations
-- Setup and deployment guides
-- Professional presentation
+# 2. Modify existing tracked file
+echo "Modified content" >> src/main.py
+git status  # Should show: Changes not staged for commit: modified: src/main.py
 
----
+# 3. Stage the modified file
+git add src/main.py
+git status  # Should show: Changes to be committed: modified: src/main.py
 
-## Technical Requirements
+# 4. Create and stage a new file
+echo "New staged file" > staged-new.txt
+git add staged-new.txt
+git status  # Should show both files staged
 
-### Technology Stack
-- **Backend:** Python Flask
-- **Database:** SQLite (for simplicity)
-- **Frontend:** HTML/CSS/JavaScript
-- **Testing:** pytest or unittest
-- **Documentation:** Markdown
-
-### Dependencies
-```
-Flask==2.3.3
-Flask-SQLAlchemy==3.0.5
-Flask-WTF==1.1.1
-pytest==7.4.0
+# Document each state observation
 ```
 
+**Deliverables:**
+- Screenshots showing each file state
+- Clear documentation of state characteristics
+- Understanding of how files move between states
+
+#### Task 2.2: State Transition Practice
+**Objective**: Master moving files between all possible states
+
+**Requirements:**
+- Practice all state transitions using appropriate commands
+- Use `git diff` to compare between states
+- Understand when and why to use each transition
+
+**Transition Exercises:**
+```bash
+# From staged back to modified (unstaging)
+git reset HEAD src/main.py
+git status  # File should be modified but not staged
+
+# From modified to staged (staging)
+git add src/main.py
+git status  # File should be staged again
+
+# From staged to committed (committing)
+git commit -m "Update main script with new functionality"
+git status  # Should be clean
+
+# Discard working directory changes (modified → committed)
+echo "Temporary change" >> src/main.py
+git status  # Shows modified
+git checkout -- src/main.py  # Discard changes
+git status  # Should be clean again
+```
+
+**Deliverables:**
+- Successful execution of all state transitions
+- Screenshots of `git status` after each transition
+- Understanding of appropriate commands for each transition
+cp /path/to/course/Topic-01-Development-Environment/resources/github-pages-template/* .
+
+# Verify files are present
+ls -la
+```
+
+**Deliverables:**
+- Screenshot of downloaded template files
+- Local directory structure verification
+- Template README review confirmation
+
+#### Task 2.2: Local Development Environment
+**Objective**: Set up local web development environment
+
+**Requirements:**
+- Open HTML files in a web browser for testing
+- Use a code editor (VS Code recommended) for editing
+- Set up live preview if possible (optional but recommended)
+
+**Development Setup:**
+1. **Browser Testing**: Open `index.html` directly in Chrome/Firefox
+2. **Code Editor**: Use VS Code with HTML/CSS/JS extensions
+3. **Live Preview**: Install "Live Server" extension in VS Code (optional)
+
+**Deliverables:**
+- Screenshot of template opening in web browser
+- Code editor setup confirmation
+- Basic template functionality verification
+
 ---
 
-## Resources
+### Part 3: Advanced State Management & Troubleshooting (30 points)
 
-- [Git Flow Workflow](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow)
-- [Flask Documentation](https://flask.palletsprojects.com/)
-- [Git Merge Strategies](https://www.atlassian.com/git/tutorials/using-branches/merge-strategy)
-- [Conventional Commits](https://www.conventionalcommits.org/)
+#### Task 3.1: Complex State Scenarios
+**Objective**: Handle complex file state situations
+
+**Requirements:**
+- Create files that exist in multiple states simultaneously
+- Practice selective staging with `git add -p`
+- Understand partial commits and staging
+
+**Advanced State Management:**
+```bash
+# Create a file with multiple changes
+echo "Line 1" > complex-file.txt
+echo "Line 2" >> complex-file.txt
+echo "Line 3" >> complex-file.txt
+echo "Line 4" >> complex-file.txt
+
+# Stage the file
+git add complex-file.txt
+git status  # Shows staged
+
+# Modify the staged file (creates both staged and unstaged changes)
+echo "Line 5 - unstaged" >> complex-file.txt
+git status  # Shows: staged changes and unstaged changes
+
+# Use diff to see the differences
+git diff    # Shows unstaged changes
+git diff --staged  # Shows staged changes
+
+# Commit only staged changes
+git commit -m "Add initial content to complex file"
+
+# Check what remains
+git status
+git diff
+```
+
+**Deliverables:**
+- Demonstration of files with multiple simultaneous states
+- Understanding of staged vs unstaged changes
+- Selective commit capabilities
+
+#### Task 3.2: State Troubleshooting Scenarios
+**Objective**: Learn to troubleshoot common state-related issues
+
+**Requirements:**
+- Create and resolve common state problems
+- Practice recovery techniques
+- Understand when to use different commands
+
+**Troubleshooting Exercises:**
+```bash
+# Scenario 1: Accidentally staged wrong file
+echo "Secret data" > sensitive.txt
+git add sensitive.txt  # Oops, staged sensitive file
+git status
+
+# Unstage the file without losing changes
+git reset HEAD sensitive.txt
+git status  # File is modified but not staged
+
+# Remove the file completely
+rm sensitive.txt
+git status  # Shows deleted file
+
+# Scenario 2: Discard unwanted changes
+echo "Unwanted changes" >> src/main.py
+git status  # Shows modified
+
+# Discard changes and revert to last commit
+git checkout -- src/main.py
+git status  # Should be clean
+
+# Scenario 3: Use git diff effectively
+echo "Change 1" >> src/main.py
+echo "Change 2" >> src/main.py
+git diff  # See working directory changes
+
+git add src/main.py
+echo "Change 3" >> src/main.py
+git diff     # Shows unstaged changes
+git diff --staged  # Shows staged changes
+```
+
+**Deliverables:**
+- Successful resolution of state issues
+- Understanding of appropriate commands for different scenarios
+- Recovery techniques for common mistakes
+
+### Part 4: State Analysis & Documentation (15 points)
+
+#### Task 4.1: Repository State Analysis
+**Objective**: Document comprehensive understanding of Git states
+
+**Requirements:**
+- Analyze the final state of your repository
+- Document all state transitions performed
+- Explain the purpose and effect of each Git command used
+
+**State Analysis:**
+- Complete repository state documentation
+- File state transitions performed
+- Command purposes and effects
+- Troubleshooting scenarios encountered and resolved
+
+**Deliverables:**
+- Comprehensive state analysis document
+- Repository state verification
+- Understanding of Git's state management system
+
+#### Task 4.2: Git States Mastery Reflection
+**Objective**: Reflect on learning about Git's state management
+
+**Requirements:**
+- Explain how understanding Git states improves development workflow
+- Describe the advantages of Git's three-area system
+- Document personal insights about version control state management
+
+**Reflection Topics:**
+- How Git states enable safe development practices
+- Benefits of staging area for selective commits
+- Importance of understanding file states for troubleshooting
+- Real-world applications of state management knowledge
+
+**Deliverables:**
+- Personal reflection on Git states learning
+- Understanding of state management benefits
+- Future applications of learned concepts
+**Objective**: Customize skills section to reflect your expertise
+
+**Requirements:**
+- Update skill cards with your actual technologies
+- Adjust proficiency levels and descriptions
+- Add or remove skills based on your experience
+- Include both technical and soft skills
+
+**Skills Section Structure:**
+```html
+<div class="skill-card">
+    <i class="fab fa-python"></i>
+    <h3>Python</h3>
+    <p>Advanced programming, data analysis, web development</p>
+</div>
+```
+
+**Skills to Include:**
+- Programming languages you've mastered
+- Frameworks and libraries you use
+- Development tools and technologies
+- Soft skills relevant to development
+
+**Deliverables:**
+- Customized skills section
+- Screenshot of updated skills grid
+- Skills relevance explanation
+
+#### Task 3.3: Projects Portfolio Integration
+**Objective**: Showcase your best projects on the website
+
+**Requirements:**
+- Add 3-6 of your best projects
+- Include project descriptions and technologies used
+- Add links to GitHub repositories or live demos
+- Use appropriate icons or images for each project
+
+**Project Information to Include:**
+- Project title and brief description
+- Technologies/languages used
+- GitHub repository link
+- Live demo link (if available)
+- Key features or achievements
+
+**Deliverables:**
+- Projects section with your actual work
+- Screenshots of project cards
+- Links verification (working GitHub/demo links)
+
+#### Task 3.4: Visual Design Customization
+**Objective**: Personalize the website's visual appearance
+
+**Requirements:**
+- Modify color scheme to match your preferences
+- Update fonts if desired (stick to web-safe fonts)
+- Adjust layout spacing and typography
+- Ensure design remains professional and readable
+
+**CSS Customization Areas:**
+```css
+/* Primary colors */
+.btn-primary {
+    background: #3498db; /* Change to your preferred color */
+}
+
+/* Hero section gradient */
+.hero {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    /* Modify gradient colors */
+}
+```
+
+**Design Principles:**
+- Maintain readability (good contrast)
+- Keep professional appearance
+- Ensure mobile responsiveness
+- Use consistent color scheme
+
+**Deliverables:**
+- Customized CSS with personal styling
+- Before/after design comparison screenshots
+- Design rationale explanation
 
 ---
 
-## Tips for Success
+### Part 4: Repository Setup & Deployment (20 points)
 
-1. **Plan Before Coding:** Design your branching strategy first
-2. **Commit Frequently:** Make small, focused commits
-3. **Test Merges:** Always test after merging branches
-4. **Document Conflicts:** Keep records of complex conflict resolutions
-5. **Clean Up Branches:** Delete merged branches to keep repository tidy
+#### Task 4.1: Git Repository Initialization
+**Objective**: Set up local Git repository for your portfolio
+
+**Requirements:**
+- Initialize Git repository in your portfolio directory
+- Add all template and customized files
+- Create meaningful commit messages
+- Set up proper .gitignore file
+
+**Git Setup Process:**
+```bash
+# Initialize repository
+git init
+
+# Add all files
+git add .
+
+# Create initial commit
+git commit -m "Initial commit: Add portfolio template"
+
+# Add GitHub remote
+git remote add origin https://github.com/yourusername/yourusername.github.io.git
+
+# Push to GitHub
+git push -u origin main
+```
+
+**Deliverables:**
+- Git repository initialization confirmation
+- Successful push to GitHub Pages repository
+- Repository file structure on GitHub
+
+#### Task 4.2: GitHub Pages Deployment Verification
+**Objective**: Ensure website is live and accessible
+
+**Requirements:**
+- Wait for GitHub Pages deployment to complete
+- Verify website loads correctly at your GitHub Pages URL
+- Test all links and functionality
+- Check mobile responsiveness
+
+**Deployment Verification:**
+1. **URL Access**: Visit `https://yourusername.github.io`
+2. **Content Verification**: Check all sections load properly
+3. **Link Testing**: Verify all internal and external links work
+4. **Mobile Testing**: Test on different screen sizes
+
+**Common Issues to Check:**
+- Repository name matches username.github.io format
+- Files are in the root directory (not in a subfolder)
+- No build process required (static HTML/CSS/JS only)
+- GitHub Pages is enabled in repository settings
+
+**Deliverables:**
+- Live website URL confirmation
+- Screenshots of deployed website
+- Functionality testing results
+
+#### Task 4.3: Repository Maintenance Setup
+**Objective**: Configure repository for ongoing maintenance
+
+**Requirements:**
+- Add repository description and topics
+- Set up repository social media preview
+- Configure repository settings for portfolio presentation
+
+**Repository Configuration:**
+- **Description**: "Personal portfolio and project showcase"
+- **Topics**: `portfolio`, `web-development`, `personal-website`
+- **Website**: Your GitHub Pages URL
+- **Social Preview**: Add repository image (optional)
+
+**Deliverables:**
+- Configured repository settings screenshot
+- Repository topics and description
+- Professional repository presentation
 
 ---
 
-## Common Challenges
+### Part 5: Advanced Features & Testing (15 points)
 
-- **Complex Conflicts:** Break down large conflicts into smaller pieces
-- **Branch Management:** Use `git branch -a` to track all branches
-- **Merge Strategy Choice:** Consider project needs when choosing merge types
-- **Testing After Merge:** Always run full test suite after merging
+#### Task 5.1: JavaScript Enhancement
+**Objective**: Add interactive features to your portfolio
+
+**Requirements:**
+- Enhance existing JavaScript functionality
+- Add new interactive features
+- Ensure all JavaScript works correctly
+
+**Enhancement Ideas:**
+- Add project filtering functionality
+- Implement smooth scroll to sections
+- Create a contact form with validation
+- Add dark/light mode toggle
+
+**Deliverables:**
+- Enhanced JavaScript functionality
+- New features demonstration
+- JavaScript error-free operation
+
+#### Task 5.2: Cross-Browser & Mobile Testing
+**Objective**: Ensure website works across different platforms
+
+**Requirements:**
+- Test on multiple web browsers (Chrome, Firefox, Safari, Edge)
+- Verify mobile responsiveness
+- Check tablet and desktop layouts
+- Validate accessibility features
+
+**Testing Checklist:**
+- [ ] Chrome browser compatibility
+- [ ] Firefox browser compatibility
+- [ ] Mobile device testing
+- [ ] Tablet responsiveness
+- [ ] Desktop layout verification
+- [ ] Touch interaction testing
+
+**Deliverables:**
+- Cross-browser testing results
+- Mobile responsiveness screenshots
+- Accessibility validation confirmation
+
+#### Task 5.3: Performance Optimization
+**Objective**: Optimize website loading and performance
+
+**Requirements:**
+- Minimize file sizes where possible
+- Optimize images (if added)
+- Ensure fast loading times
+- Test with browser developer tools
+
+**Optimization Tasks:**
+1. **Minimize CSS/JS**: Remove unnecessary code
+2. **Optimize Images**: Compress any images added
+3. **Reduce HTTP Requests**: Combine files if possible
+4. **Enable Compression**: Ensure GitHub Pages compression
+
+**Deliverables:**
+- Performance optimization results
+- Loading speed test results
+- Optimization techniques applied
 
 ---
 
-## Extension Activities (Bonus Points)
+## 📋 Submission Requirements
 
-- Implement CI/CD pipeline with GitHub Actions
-- Add Docker containerization
-- Create admin dashboard for content management
-- Implement real-time notifications
-- Add user roles and permissions
-- Create RESTful API documentation with Swagger
+### Repository Submission
+- **Local Repository**: Your `git-states-practice` directory with complete history
+- **Command Logs**: Screenshots of all Git operations and state observations
+- **State Documentation**: Detailed records of file states and transitions
 
----
+### Documentation Deliverables
+- **State Transition Journal**: Complete log of all state changes performed
+- **Command Analysis**: Explanation of each Git command used and its effects
+- **Troubleshooting Report**: Issues encountered and how they were resolved
+- **State Management Reflection**: Personal insights about Git states
 
-## Evaluation Checklist
-
-- [ ] Professional repository structure
-- [ ] Complete Git Flow implementation
-- [ ] All required features implemented
-- [ ] Merge conflicts created and resolved
-- [ ] Comprehensive testing
-- [ ] Professional documentation
-- [ ] Working web application
-- [ ] Clean commit history
+### Submission Format
+- Create folder: `homework-03-git-states`
+- Include repository with all state transition history
+- Document all commands used and their purposes
+- Provide clear explanations of state management concepts
 
 ---
 
-*This homework simulates real-world team development. Focus on collaboration practices, code quality, and professional Git workflows.*
+## 🎯 Evaluation Criteria
+
+### Repository Setup & History (20%)
+- Proper repository initialization and structure
+- Establishment of commit history for state practice
+- Clean baseline state for exercises
+
+### File State Understanding (30%)
+- Demonstration of all file states (untracked, modified, staged, committed)
+- Proper use of `git status` to observe states
+- Understanding of state characteristics and transitions
+
+### State Transition Mastery (30%)
+- Successful execution of all state transitions
+- Appropriate use of Git commands (add, reset, commit, checkout)
+- Effective use of diff commands to compare states
+
+### Troubleshooting & Analysis (20%)
+- Resolution of common state management issues
+- Documentation of state management understanding
+- Reflection on Git's state management benefits
+- Visual design cohesive and appealing
+
+### Technical Implementation (25%)
+- HTML/CSS/JS properly structured and functional
+- Responsive design working across devices
+- Interactive features implemented correctly
+
+### Deployment & Maintenance (15%)
+- Successful website deployment and accessibility
+- Repository properly maintained and documented
+- Professional online presence established
+
+### Advanced Features (10%)
+- JavaScript enhancements implemented
+- Performance optimizations applied
+- Cross-browser compatibility achieved
+
+### Documentation (5%)
+- Clear customization documentation
+- Technical implementation explained
+- Future maintenance guidelines provided
+
+---
+
+## 🆘 Troubleshooting
+
+### GitHub Pages Issues
+
+**Repository Name Problems:**
+- Must be exactly `username.github.io`
+- Check for typos in repository name
+- Ensure username matches your GitHub account
+
+**Deployment Delays:**
+- GitHub Pages can take 5-10 minutes to deploy
+- Check repository settings if deployment fails
+- Verify files are in root directory
+
+**404 Errors:**
+- Repository must be public
+- GitHub Pages must be enabled
+- Check repository name matches URL
+
+### Template Customization Issues
+
+**Styling Not Applying:**
+- Check CSS file path in HTML
+- Verify CSS syntax is correct
+- Clear browser cache after changes
+
+**JavaScript Not Working:**
+- Check script file path in HTML
+- Verify JavaScript console for errors
+- Test functions individually
+
+**Mobile Responsiveness:**
+- Test with browser developer tools
+- Check CSS media queries
+- Verify viewport meta tag
+
+---
+
+## 📞 Getting Help
+
+### Resources
+- **GitHub Pages Documentation**: https://pages.github.com
+- **HTML/CSS/JS Tutorials**: MDN Web Docs, W3Schools
+- **Template Documentation**: Check template README.md
+- **Course Discord**: #web-development-help
+
+### Common Questions
+- "How do I change the color scheme?"
+- "My website isn't showing up - what do I do?"
+- "How do I add my own projects?"
+- "Can I use a custom domain?"
+
+---
+
+## ✅ Success Criteria
+
+Your Git states homework is complete when:
+
+- ✅ Repository created with proper baseline commit history
+- ✅ All file states experienced and documented (untracked, modified, staged, committed)
+- ✅ State transitions performed using appropriate Git commands
+- ✅ Complex state scenarios handled successfully
+- ✅ Common state issues troubleshooted and resolved
+- ✅ Diff commands used effectively to compare states
+- ✅ State management understanding demonstrated
+- ✅ Personal insights about Git states documented
+
+---
+
+**Estimated Completion Time**: 100-130 minutes
+**Difficulty Level**: Intermediate
+**Points**: 100
+
+Congratulations on mastering Git's state management system! You now have deep insight into how Git tracks and manages file changes. This understanding will make you a much more effective and confident Git user.
+
+---
+
+**Pro Tips:**
+- Always check `git status` before committing to understand your repository state
+- Use `git diff` and `git diff --staged` to review changes before committing
+- The staging area gives you control - use it to create focused, logical commits
+- Understanding states makes troubleshooting much easier

@@ -1,368 +1,480 @@
-# Homework 1: Git Profile Setup & Basic Configuration
+# Homework 1: Git Fundamentals - Local Repository Mastery
 
-## Due Date: [Insert due date - typically 1 week from assignment]
-
-## Objective
-Set up your Git environment professionally and demonstrate understanding of basic Git configuration and repository creation.
-
-## Estimated Time: 45-60 minutes
+**Section**: 1 - Introduction to Git
+**Estimated Time**: 90-120 minutes
+**Difficulty**: Beginner
+**Prerequisites**: None
 
 ---
 
-## Part 1: Git Installation & Configuration (20 points)
+## 📋 Assignment Overview
 
-### Task 1.1: Install Git (5 points)
+In this homework, you'll master the fundamental concepts of Git version control. You'll install Git, create your first local repository, practice the basic Git workflow, and understand how Git tracks changes to your files. This hands-on approach will give you a solid foundation in version control before moving to collaborative features.
+
+**Learning Objectives:**
+- Install and configure Git on your system
+- Understand Git's core concepts (repository, commits, working directory, staging area)
+- Practice the basic Git workflow (init, add, commit, status, log)
+- Experience Git's snapshot-based approach to version control
+- Learn to navigate and understand repository history
+
+---
+
+## 🎯 Requirements
+
+### Part 1: Git Installation & Configuration (25 points)
+
+#### Task 1.1: Install Git
+**Objective**: Install Git version control system on your computer
 
 **Requirements:**
-- Install Git on your system following the appropriate guide
-- Verify installation works correctly
+- Download Git from https://git-scm.com/downloads
+- Install with default settings (recommended for beginners)
+- Verify installation by checking the version
 
-**Deliverables:**
-- Screenshot of `git --version` command output
-- Confirmation that Git commands work in your terminal
-
-**Verification Steps:**
+**Installation Verification:**
 ```bash
 git --version
-# Should show: git version 2.x.x.x
+# Should show: git version 2.x.x
 ```
 
-### Task 1.2: Configure User Identity (5 points)
+**Deliverables:**
+- Screenshot showing successful Git installation
+- Output of `git --version` command
+- Confirmation that Git is properly installed
+
+#### Task 1.2: Configure Git
+**Objective**: Set up your Git identity and basic configuration
 
 **Requirements:**
-- Set global user name and email
-- Use your real name and educational email
-- Verify configuration is correct
+- Configure your name and email address
+- Set up line ending preferences for your operating system
+- Verify your configuration settings
 
-**Deliverables:**
-- Commands used for configuration
-- Output of `git config --global --list` showing your settings
-
-**Example:**
+**Git Configuration Commands:**
 ```bash
-git config --global user.name "John Doe"
-git config --global user.email "john.doe@university.edu"
-```
+# Set your identity
+git config --global user.name "Your Full Name"
+git config --global user.email "your.email@example.com"
 
-### Task 1.3: Configure Git Settings (5 points)
+# Configure line endings (choose based on your OS)
+# For Windows:
+git config --global core.autocrlf true
 
-**Requirements:**
-- Set default branch to `main`
-- Configure appropriate line endings for your OS
-- Enable useful features (color output, etc.)
+# For macOS/Linux:
+git config --global core.autocrlf input
 
-**Deliverables:**
-- Complete list of global Git configuration
-- Explanation of why each setting is important
-
-**Required Settings:**
-```bash
-git config --global init.defaultBranch main
-git config --global color.ui auto
-# Plus OS-specific line ending setting
-```
-
-### Task 1.4: Set Up SSH Keys (Optional - 5 bonus points)
-
-**Requirements:**
-- Generate SSH key pair
-- Add public key to GitHub/GitLab account
-- Test SSH connection
-
-**Deliverables:**
-- Confirmation of SSH key generation
-- Test connection output
-- GitHub SSH key screenshot
-
----
-
-## Part 2: Repository Creation & Basic Operations (30 points)
-
-### Task 2.1: Create Personal Repository (10 points)
-
-**Requirements:**
-- Create a new directory for your homework
-- Initialize as Git repository
-- Create initial project structure
-
-**Project Structure Requirements:**
-```
-homework-01-[your-name]/
-├── README.md
-├── profile.json
-├── interests.txt
-└── goals.md
-```
-
-**Deliverables:**
-- Repository initialization commands
-- File creation commands
-- Initial project structure
-
-### Task 2.2: Create Meaningful Files (10 points)
-
-**Requirements:**
-- Create a professional README.md
-- Add personal information in JSON format
-- List your interests/learning goals
-
-**README.md Requirements:**
-- Project title and description
-- Your name and contact info
-- Brief bio/academic background
-- Purpose of this repository
-
-**profile.json Example:**
-```json
-{
-  "name": "John Doe",
-  "university": "Your University",
-  "major": "Computer Engineering",
-  "year": "2024",
-  "interests": ["programming", "version control", "web development"],
-  "skills": ["Python", "JavaScript", "Git"]
-}
-```
-
-**Deliverables:**
-- All required files created
-- Content is professional and complete
-
-### Task 2.3: Make Initial Commits (10 points)
-
-**Requirements:**
-- Stage files appropriately
-- Make logical commits (not one big commit)
-- Use clear, descriptive commit messages
-
-**Commit Strategy:**
-- Commit 1: Add README and basic structure
-- Commit 2: Add profile information
-- Commit 3: Add interests and goals
-
-**Example Commit Messages:**
-```
-Add project README and basic structure
-Add personal profile information
-Document interests and learning goals
-```
-
-**Deliverables:**
-- Git log showing all commits
-- Explanation of your commit strategy
-
----
-
-## Part 3: Repository Management (20 points)
-
-### Task 3.1: Repository Status & History (10 points)
-
-**Requirements:**
-- Demonstrate understanding of Git status
-- Show commit history in multiple formats
-- Explain repository state at each step
-
-**Deliverables:**
-- Output of `git status` at different stages
-- Various `git log` formats
-- Explanation of what each command shows
-
-### Task 3.2: File Operations Practice (10 points)
-
-**Requirements:**
-- Modify existing files
-- Add new files
-- Practice staging selectively
-- Make additional commits
-
-**Tasks:**
-1. Update your goals.md with new objectives
-2. Add a new file with your favorite code snippet
-3. Modify profile.json with additional information
-4. Stage and commit changes appropriately
-
-**Deliverables:**
-- Commands used for modifications
-- Selective staging demonstration
-- Updated commit history
-
----
-
-## Part 4: Documentation & Reflection (15 points)
-
-### Task 4.1: Create Setup Documentation (5 points)
-
-**Requirements:**
-- Document your setup process
-- Include troubleshooting steps you encountered
-- Create a guide for others
-
-**Deliverables:**
-- Setup documentation file
-- Screenshots where helpful
-- Troubleshooting notes
-
-### Task 4.2: Git Commands Reference (5 points)
-
-**Requirements:**
-- List all Git commands you learned
-- Provide brief explanation for each
-- Note any challenges you faced
-
-**Deliverables:**
-- Personal Git commands cheat sheet
-- Explanations and examples
-
-### Task 4.3: Reflection (5 points)
-
-**Requirements:**
-- What was most challenging?
-- What did you learn?
-- How will you use Git going forward?
-
-**Deliverables:**
-- Written reflection (200-300 words)
-- Specific examples from your work
-- Future Git usage plans
-
----
-
-## Submission Requirements
-
-### Repository Structure
-Your repository must contain:
-```
-homework-01-[your-name]/
-├── README.md                 # Project documentation
-├── profile.json             # Personal information
-├── interests.txt            # Your interests
-├── goals.md                 # Learning goals
-├── setup-guide.md          # Setup documentation
-├── git-commands.md         # Commands reference
-├── reflection.md           # Your reflection
-└── screenshots/            # Screenshots folder
-    ├── git-version.png
-    ├── github-ssh-key.png
-    └── git-config.png
-```
-
-### Submission Method
-1. **Create GitHub Repository:**
-   - Name: `homework-01-[your-name]`
-   - Make it public
-   - Add descriptive README
-
-2. **Push Your Work:**
-   ```bash
-   git remote add origin https://github.com/yourusername/homework-01-yourname.git
-   git push -u origin main
-   ```
-
-3. **Submit Repository URL:**
-   - Share the GitHub repository URL
-   - Ensure all files are committed and pushed
-
-### Grading Criteria
-- **Completeness (40%)**: All required files and tasks completed
-- **Correctness (30%)**: Git commands used properly, configurations correct
-- **Documentation (20%)**: Clear explanations, good commit messages
-- **Professionalism (10%)**: Clean code, organized repository, professional presentation
-
----
-
-## Verification Script
-
-Run this script to verify your setup:
-
-```bash
-#!/bin/bash
-echo "=== Git Setup Verification ==="
-echo "Git version: $(git --version)"
-echo ""
-echo "Git configuration:"
+# Verify configuration
 git config --global --list
-echo ""
-echo "Testing repository operations..."
-mkdir test-verification
-cd test-verification
-git init
-echo "test" > test.txt
-git add test.txt
-git commit -m "Test commit"
-echo "Repository test: SUCCESS"
-cd ..
-rm -rf test-verification
-echo ""
-echo "=== Verification Complete ==="
 ```
 
----
-
-## Resources
-
-- [Git Installation Guides](../installation/)
-- [Git Configuration Documentation](https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup)
-- [GitHub SSH Setup](https://docs.github.com/en/authentication/connecting-to-github-with-ssh)
-- [Git Cheat Sheet](../resources/cheatsheet.md)
+**Deliverables:**
+- Screenshot of Git configuration commands and their output
+- Confirmation that user.name and user.email are set correctly
 
 ---
 
-## Academic Integrity
+### Part 2: Create Your First Git Repository (30 points)
 
-- This homework must be your own work
-- You may reference documentation but not copy code
-- Cite any external resources used
-- Discussing concepts with classmates is encouraged
-- Sharing complete solutions is not allowed
+#### Task 2.1: Initialize Local Repository
+**Objective**: Create your first Git repository and understand its structure
+
+**Requirements:**
+- Create a new directory for your Git practice project
+- Initialize it as a Git repository
+- Explore the `.git` folder structure
+- Understand what happens when you initialize a repository
+
+**Repository Creation Steps:**
+```bash
+# Create a new directory for your project
+mkdir git-fundamentals-practice
+cd git-fundamentals-practice
+
+# Initialize Git repository
+git init
+
+# Check what was created
+ls -la
+# You should see a .git folder
+
+# Check repository status
+git status
+```
+
+**Deliverables:**
+- Screenshot showing the directory creation and `git init` command
+- Screenshot of `ls -la` showing the `.git` folder
+- Output of `git status` for an empty repository
+
+#### Task 2.2: Add Your First Files
+**Objective**: Practice adding files to Git and understanding the working directory
+
+**Requirements:**
+- Create several text files with different content
+- Check repository status after each file creation
+- Understand the difference between tracked and untracked files
+- Add files to Git tracking
+
+**File Creation and Tracking:**
+```bash
+# Create some files (run these commands one by one)
+echo "This is my first Git repository!" > README.md
+echo "print('Hello, Git World!')" > hello.py
+mkdir notes
+echo "Learning Git fundamentals" > notes/learning-notes.txt
+
+# Check status after each file creation
+git status
+
+# Add files to Git tracking
+git add README.md
+git status
+
+# Add all files
+git add .
+git status
+```
+
+**Deliverables:**
+- Screenshots showing file creation commands
+- Multiple `git status` outputs showing the progression from untracked to staged files
 
 ---
 
-## Late Submission Policy
+### Part 3: Understanding Commits & History (30 points)
 
-- 10% penalty per day late
-- No submissions accepted after 1 week
-- Technical issues are not valid excuses (test early)
+#### Task 3.1: Make Your First Commits
+**Objective**: Experience Git's snapshot-based version control
+
+**Requirements:**
+- Make your first commit with staged files
+- Understand what a commit contains
+- Modify files and create additional commits
+- Practice writing meaningful commit messages
+
+**Creating Commits:**
+```bash
+# Make your first commit
+git commit -m "Initial commit: Add README and basic project structure"
+
+# Check the commit history
+git log
+git log --oneline
+
+# Modify a file and create another commit
+echo "Added more content to README" >> README.md
+git add README.md
+git commit -m "Update README with additional information"
+
+# Check history again
+git log --oneline
+```
+
+**Deliverables:**
+- Screenshot of your first `git commit` command and its output
+- Screenshot of `git log` showing your commit history
+- At least 3 commits with different meaningful messages
+
+#### Task 3.2: Explore Git Concepts Hands-On
+**Objective**: Demonstrate understanding of Git's core concepts
+
+**Requirements:**
+- Modify files in different ways (content changes, file deletions, renames)
+- Use `git diff` to see changes before staging
+- Practice unstaging files
+- Understand the relationship between working directory, staging area, and repository
+
+**Exploring Git States:**
+```bash
+# Create and modify files
+echo "New feature implementation" > feature.txt
+git status
+
+# See changes before staging
+git diff
+
+# Stage the file
+git add feature.txt
+git status
+
+# See staged changes
+git diff --staged
+
+# Modify the staged file
+echo "Updated feature implementation" >> feature.txt
+
+# Check status (file is both staged and modified)
+git status
+git diff    # Shows unstaged changes
+git diff --staged  # Shows staged changes
+
+# Commit current staged version
+git commit -m "Add initial feature implementation"
+
+# Stage the additional changes
+git add feature.txt
+git commit -m "Update feature with additional functionality"
+```
+
+**Deliverables:**
+- Screenshots demonstrating different file states (untracked, modified, staged)
+- Examples of `git diff` and `git diff --staged` output
+- Commit history showing multiple commits with clear progression
+
+#### Task 3.3: Repository History Analysis
+**Objective**: Understand how Git tracks project history
+
+**Requirements:**
+- Create a comprehensive commit history
+- Use different `git log` formats to view history
+- Understand commit metadata (author, date, message)
+- Analyze how your project evolved through commits
+
+**Analyzing History:**
+```bash
+# Create more commits to build history
+mkdir src
+echo "def main():" > src/main.py
+echo "    print('Git fundamentals project')" >> src/main.py
+git add src/
+git commit -m "Add main source code directory and entry point"
+
+# Create documentation
+echo "# Git Fundamentals Practice" > docs/project-overview.md
+echo "This project demonstrates basic Git concepts." >> docs/project-overview.md
+git add docs/
+git commit -m "Add project documentation"
+
+# View history in different formats
+git log
+git log --oneline
+git log --pretty=format:"%h %ad | %s%d [%an]" --date=short
+```
+
+**Deliverables:**
+- Repository with at least 5 commits showing project progression
+- Screenshots of different `git log` formats
+- Analysis of how your repository history tells the story of your project development
 
 ---
 
-## Support
+### Part 4: Git Concepts Demonstration & Analysis (15 points)
 
-- **Technical Issues:** Check troubleshooting sections in workshops
-- **Git Problems:** Review workshop materials and tutorials
-- **Questions:** Post in course discussion forum (don't share solutions)
-- **Office Hours:** Attend instructor office hours for personalized help
+#### Task 4.1: Demonstrate Git Understanding
+**Objective**: Show mastery of Git concepts through practical examples
+
+**Requirements:**
+- Create a scenario that demonstrates Git's advantages over manual file management
+- Show how Git tracks changes and enables experimentation
+- Explain the difference between Git and simple file backups
+
+**Practical Demonstration:**
+```bash
+# Create a "backup" scenario manually (the old way)
+cp -r . ../git-practice-backup-manual
+echo "Manual backup created at $(date)" > ../git-practice-backup-manual/backup-info.txt
+
+# Now show how Git handles the same scenario
+echo "Experimenting with new features" > experimental-feature.txt
+git add experimental-feature.txt
+git commit -m "Start experimental feature branch"
+
+# Modify the experimental feature
+echo "Updated experimental implementation" >> experimental-feature.txt
+git add experimental-feature.txt
+git commit -m "Improve experimental feature"
+
+# Realize the experiment isn't working - easy rollback with Git
+git log --oneline
+git reset --hard HEAD~2  # Go back to before the experiment
+
+# The experimental files are gone, but we can get them back if needed
+git reflog
+git checkout <commit-hash>  # Could restore if we wanted
+```
+
+**Deliverables:**
+- Demonstration of Git's snapshot-based approach vs manual backups
+- Examples showing how Git enables safe experimentation
+- Explanation of Git's advantages over traditional file management
+
+#### Task 4.2: Repository Analysis & Summary
+**Objective**: Analyze your Git repository and summarize learning
+
+**Requirements:**
+- Provide a complete analysis of your repository structure
+- Explain what each Git command you used accomplished
+- Reflect on how Git changes your approach to file management
+- Document any challenges faced and solutions found
+
+**Repository Analysis:**
+- Repository structure and file organization
+- Commit history and progression
+- Git commands used and their purposes
+- Key concepts demonstrated
+- Personal insights about version control
+
+**Deliverables:**
+- Complete repository analysis document
+- Summary of Git concepts learned
+- Personal reflection on version control benefits
 
 ---
 
-## Grading Rubric
+## 📋 Repository Structure Template
 
-| Criteria | Excellent (90-100%) | Good (80-89%) | Satisfactory (70-79%) | Needs Improvement (<70%) |
-|----------|-------------------|---------------|---------------------|-------------------------|
-| Installation | Perfect setup, all configs correct | Minor config issues | Missing some settings | Major setup problems |
-| Repository Ops | All operations correct, clean history | Few command errors | Multiple mistakes | Cannot perform basic ops |
-| Documentation | Clear, professional, complete | Good but missing details | Basic documentation | Poor/incomplete docs |
-| File Management | Proper staging, good commits | Some staging issues | Poor commit practices | No commit strategy |
-| Reflection | Deep insights, specific examples | Good analysis | Basic reflection | Minimal effort |
+For your Git practice project, consider organizing your files like this:
 
----
+```
+git-fundamentals-practice/
+├── README.md                    # Project description and instructions
+├── hello.py                     # Simple Python script
+├── notes/
+│   └── learning-notes.txt       # Your Git learning notes
+├── src/
+│   └── main.py                  # Main application code
+├── docs/
+│   └── project-overview.md      # Project documentation
+└── experimental-feature.txt     # Feature development file
+```
 
-## Frequently Asked Questions
-
-**Q: Can I use a different code editor?**
-A: Yes, any text editor is fine. Just ensure files are properly saved.
-
-**Q: Do I need GitHub for this assignment?**
-A: Yes, submission requires a public GitHub repository.
-
-**Q: What if I don't have SSH access?**
-A: You can use HTTPS for GitHub, but SSH is recommended.
-
-**Q: Can I modify the file structure?**
-A: Core files must be present, but you can add additional files.
-
-**Q: What if I make mistakes in Git?**
-A: That's part of learning! Document what you learned from mistakes.
+**Recommended Project Structure:**
+- `README.md`: Describe your project and Git learning journey
+- `src/`: Source code files
+- `docs/`: Documentation and notes
+- `notes/`: Personal learning notes and observations
 
 ---
 
-*Remember: This homework is designed to build your Git skills progressively. Take your time, ask questions, and focus on understanding rather than just completing tasks.*
+## 📋 Submission Requirements
+
+### Required Files
+- **Local Git Repository**: Your `git-fundamentals-practice` directory with complete history
+- **Repository Screenshots**: Screenshots of `git status`, `git log`, and repository structure
+- **Command Outputs**: Screenshots showing Git commands and their results
+- **Learning Documentation**: Your notes and observations about Git concepts
+
+### Written Documentation
+- **Git Command Journal**: Step-by-step record of commands used and their purposes
+- **Concept Explanations**: Your understanding of Git concepts (repository, commits, staging, etc.)
+- **Challenges & Solutions**: Any difficulties encountered and how you resolved them
+- **Git vs Manual Comparison**: Analysis of Git's advantages over traditional file management
+
+### Submission Format
+- Create folder: `homework-01-git-fundamentals`
+- Include repository folder and all documentation
+- Submit repository analysis and command journal
+
+---
+
+## 🎯 Evaluation Criteria
+
+### Git Installation & Configuration (25%)
+- Successful Git installation and version verification
+- Proper Git user configuration (name and email)
+- Correct system-specific settings (line endings)
+- Configuration verification and documentation
+
+### Repository Creation & Management (30%)
+- Proper repository initialization with `git init`
+- Understanding of `.git` folder structure
+- Correct file staging and committing process
+- Meaningful commit messages and history
+
+### Git Concepts Understanding (25%)
+- Demonstration of Git's three areas (working directory, staging, repository)
+- Proper use of `git status`, `git diff`, and `git log`
+- Understanding of file states and transitions
+- Safe experimentation and rollback capabilities
+
+### Analysis & Documentation (20%)
+- Clear explanation of Git concepts and commands
+- Repository structure analysis and justification
+- Personal reflection on version control benefits
+- Professional documentation and presentation
+
+---
+
+## 🆘 Troubleshooting
+
+### GitHub Pages Issues
+**Site not loading:**
+- Wait 1-5 minutes after enabling Pages
+- Check repository name format: `username.github.io`
+- Ensure repository is public
+
+**404 errors:**
+- Check that `index.html` is in repository root
+- Verify GitHub Pages source settings
+
+### Git Issues
+**Permission denied:**
+- Ensure you're using correct GitHub credentials
+- Check if repository exists and is accessible
+
+**Changes not appearing:**
+- Ensure files are committed and pushed
+- Clear browser cache when testing
+
+### Code Issues
+**JavaScript not working:**
+- Check browser console for errors
+- Ensure script tag has correct path
+
+**CSS not applying:**
+- Verify file paths in HTML
+- Check for syntax errors in CSS
+
+---
+
+## 📞 Getting Help
+
+### Resources
+- **GitHub Pages Guide**: https://pages.github.com/
+- **HTML/CSS/JS Tutorials**: MDN Web Docs, freeCodeCamp
+- **GitHub Learning Lab**: Hands-on GitHub tutorials
+- **W3Schools**: Interactive web development examples
+
+### Community Support
+- **Course Discord**: #web-development channel
+- **Stack Overflow**: Tag questions with `github-pages`
+- **GitHub Community**: https://github.community
+
+### Debug Tools
+- **Browser DevTools**: Inspect elements and debug JavaScript
+- **GitHub Repository Settings**: Check Pages configuration
+- **W3C Validators**: HTML and CSS validation tools
+
+---
+
+## ✅ Success Criteria
+
+Your Git fundamentals homework is complete when:
+
+- ✅ Git successfully installed and configured on your system
+- ✅ Local repository created with proper `git init`
+- ✅ Files added, staged, and committed with meaningful messages
+- ✅ Repository history demonstrates understanding of Git workflow
+- ✅ Different file states experienced (untracked, modified, staged, committed)
+- ✅ Git commands properly used: `status`, `add`, `commit`, `log`, `diff`
+- ✅ Safe experimentation demonstrated with rollback capabilities
+- ✅ Repository structure and history properly analyzed
+- ✅ Personal understanding of Git concepts documented
+
+---
+
+**Estimated Completion Time**: 90-120 minutes
+**Difficulty Level**: Beginner
+**Points**: 100
+
+Congratulations on mastering Git fundamentals! You now understand the core concepts that power modern software development. This foundation will serve you well as you progress to collaborative development and advanced Git features.
+
+---
+
+**Pro Tips:**
+- Practice Git commands regularly to build muscle memory
+- Use `git status` frequently to understand your repository state
+- Write clear, descriptive commit messages
+- Experiment safely - Git makes it easy to undo mistakes
+- Keep learning advanced Git features as you progress
